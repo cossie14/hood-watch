@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5x*s*_y@wc2-zzm4c$0uh0qe-j2e(o&whi8+*781q63nw)&pgu'
+SECRET_KEY = 'i^35in%18!%3$rxvobm+q93a!&4*s(t)up97qshfl-imi2^1s3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,7 +80,6 @@ WSGI_APPLICATION = 'slyhood.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -89,7 +88,6 @@ DATABASES = {
         'PASSWORD':'sly',
     }
 }
-
 
 
 # Password validation

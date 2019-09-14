@@ -1,1 +1,0 @@
-web: gunicorn slyhood.wsgi --log-file -
