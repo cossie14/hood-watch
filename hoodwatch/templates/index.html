@@ -1,0 +1,260 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load bootstrap%}
+{% block content %}
+{{block.super}}
+
+
+<div class="container">
+  
+  <div class="row"style="padding:0 4px;">
+
+    {% for post in post%}
+    
+    <div class="photo card">
+
+      <div class="card-header">
+        <h5 id='red' class="card-title"><b>{{post.title}}</b></h5>
+      </div>
+      <img style="width:50%; border-radius:25px " src="{{post.project_pic.url}}" class="card-img-top img-fluid" alt="dummy" width="100%">
+      <div class="card-img-overlay">
+        <br>
+        
+        <br>
+        <br>
+          <a href="{{post.project_url}}"><button type="button"class="btn btn-outline-warning">Rate</button></a>
+           <br>
+           <br>
+           <br>
+          <a href="{{post.project_url}}"><button type="button"class="btn btn-outline-warning">View project</button></a> <br>
+          
+      </div>
+
+
+</div>
+
+
+<!-- Font Awesome Icon Library -->
+
+<style>
+.checked {
+  color: darkblue;
+}
+</style>
+
+
+<h2></h2>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
+
+
+
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>{{user.username}}</b> {% autoescape on%}{{post.description|safe}}{% endautoescape %}</li>
+
+        </ul>
+      </div>
+    </div><br>
+
+    {% empty %}
+      <div class="row">
+        <h2>Nothing here yet </h2>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="col-md-4 responsive ">
+    <div class="row">
+      <img style=" border-radius:25px"src="{{profile.profile_picture.url}}" alt="yes" height="50px" width="50px" class="rounded-circle"> <a href="{% url 'user'%}"><p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
+    </div><br>
+      <div class="row">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            Stories
+          </div>
+
+          <ul class="list-group list-group-flush hide">
+            {% for user in users %}
+            <li class="list-group-item responsive">{{user.username}}</li>
+            {%endfor%}
+          </ul>
+
+        </div>
+      </div><br><br>
+      <div class="row">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            Explore More
+          </div>
+          <ul class="list-group list-group-flush hide">
+            {% for user in views %}
+            <li class="list-group-item responsive">{{user.username}}
+              <a href="/profile/user/{{user.id}}"><button type="button" name="button">Check profile</button></a></li>
+            {%endfor%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<br>
+<br>
+<br>
+
+
+<style>
+  .footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color:lightblue;
+     color:black;
+     text-align: center;
+  }
+  </style>
+  
+  {%extends 'base.html'%}
+{%load static%}
+{%load bootstrap%}
+{% block content %}
+{{block.super}}
+
+
+<div class="container">
+  
+  <div class="row"style="padding:0 4px;">
+
+    {% for post in post%}
+    
+    <div class="photo card">
+
+      <div class="card-header">
+        <h5 id='red' class="card-title"><b>{{post.title}}</b></h5>
+      </div>
+      <img style="width:50%; border-radius:25px " src="{{post.project_pic.url}}" class="card-img-top img-fluid" alt="dummy" width="100%">
+      <div class="card-img-overlay">
+        <br>
+        
+        <br>
+        <br>
+          <a href="{{post.project_url}}"><button type="button"class="btn btn-outline-warning">Rate</button></a>
+           <br>
+           <br>
+           <br>
+          <a href="{{post.project_url}}"><button type="button"class="btn btn-outline-warning">View project</button></a> <br>
+          
+      </div>
+
+
+</div>
+
+
+<!-- Font Awesome Icon Library -->
+
+<style>
+.checked {
+  color: darkblue;
+}
+</style>
+
+
+<h2></h2>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
+
+
+
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>{{user.username}}</b> {% autoescape on%}{{post.description|safe}}{% endautoescape %}</li>
+
+        </ul>
+      </div>
+    </div><br>
+
+    {% empty %}
+      <div class="row">
+        <h2>Nothing here yet </h2>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="col-md-4 responsive ">
+    <div class="row">
+      <img style=" border-radius:25px"src="{{profile.profile_picture.url}}" alt="yes" height="50px" width="50px" class="rounded-circle"> <a href="{% url 'user'%}"><p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
+    </div><br>
+      <div class="row">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            Stories
+          </div>
+
+          <ul class="list-group list-group-flush hide">
+            {% for user in users %}
+            <li class="list-group-item responsive">{{user.username}}</li>
+            {%endfor%}
+          </ul>
+
+        </div>
+      </div><br><br>
+      <div class="row">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            Explore More
+          </div>
+          <ul class="list-group list-group-flush hide">
+            {% for user in views %}
+            <li class="list-group-item responsive">{{user.username}}
+              <a href="/profile/user/{{user.id}}"><button type="button" name="button">Check profile</button></a></li>
+            {%endfor%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<br>
+<br>
+<br>
+
+
+<style>
+  .footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color:lightblue;
+     color:black;
+     text-align: center;
+  }
+  </style>
+  
+  
+  <div class="footer">
+    <ul class="list-unstyled text-small">
+        <h1>APIs</h1>
+      <li><a class="text-muted" href="/api/profile">Profile</a></li>
+      <li><a class="text-muted" href="/api/project">Project</a></li>
+    </ul>
+  
+  </div>
+  
+
+
+{% endblock %}
+
+
+{% endblock %}

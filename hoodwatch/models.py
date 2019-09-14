@@ -8,7 +8,7 @@ from tinymce.models import HTMLField
 class Profile(models.Model):
     username = models.CharField(max_length =60,primary_key=True)
     user_id = models.IntegerField(default=0)
-    hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
+    # hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
     email = models.EmailField(max_length = 60, null=True)
     profile_picture = models.ImageField(upload_to ='profile/')
     bio = HTMLField()
@@ -28,7 +28,7 @@ class Profile(models.Model):
 
 class Hood(models.Model):
     name = models.CharField(max_length = 30)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    # location = models.ForeignKey(Location, on_delete=models.CASCADE)
     occupants = models.IntegerField(null=True, default=0)
 
     def __str__(self):
@@ -59,7 +59,7 @@ class Business(models.Model):
     hood_id= models.ForeignKey(Hood, on_delete=models.CASCADE)
     email = models.EmailField(max_length = 50)
     description = models.TextField(null=True)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    # user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
    
 
 
@@ -84,7 +84,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 50)
     content = models.TextField()
     user = models.ForeignKey(User,on_delete = models.CASCADE)
-    hood = models.ForeignKey(NeighbourHood,on_delete = models.CASCADE)
+    hood = models.ForeignKey(Hood,on_delete = models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True,null=True)
 
     def __str__(self):

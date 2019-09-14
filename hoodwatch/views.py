@@ -1,18 +1,18 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 import datetime as dt
-from .models import Project,NewsLetterRecipients,Profile
-from .forms import NewProjectForm,NewsLetterForm,NewsProfileForm
+from .models import Hood,NewsLetterRecipients,Profile
+
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from .email import send_welcome_email
+
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import AwardSerializer,UserSerializer
+# from .serializer import AwardSerializer,UserSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, HoodForm, BusinessForm, PostForm,CommentForm
+from .forms import ProfileForm, HoodForm, BusinessForm, PostForm
 from django.contrib.auth.models import User
 
 
