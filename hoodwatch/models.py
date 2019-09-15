@@ -1,34 +1,17 @@
-
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
-
-class Profile(models.Model):
-    username = models.CharField(max_length =60,primary_key=True)
-    user_id = models.IntegerField(default=0)
-    # hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
-    email = models.EmailField(max_length = 60, null=True)
-    profile_picture = models.ImageField(upload_to ='profile/')
-    bio = HTMLField()
-    
- 
+class Location(models.Model):
+    name = models.CharField(max_length = 30)
 
     def __str__(self):
-        return self.username
-    '''save profile method'''
-    def save_profile(self):
-        self.save()
-
-    '''delete ratings method'''
-    def delete_profile(self):
-        deleted_profile = Profile.objects.all().delete()
-        return deleted_profile
+        return self.name
 
 class Hood(models.Model):
     name = models.CharField(max_length = 30)
-    # location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     occupants = models.IntegerField(null=True, default=0)
 
     def __str__(self):
@@ -51,20 +34,26 @@ class Hood(models.Model):
     def update_occupants(self):
         self.occupants += 1
         self.save()
-        
 
-
-class Business(models.Model):
-    username = models.CharField(max_length = 50)
-    hood_id= models.ForeignKey(Hood, on_delete=models.CASCADE)
-    email = models.EmailField(max_length = 50)
-    description = models.TextField(null=True)
-    # user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-   
-
+class User(models.Model):
+    name = models.CharField(max_length = 30)
+    hood = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
+    bio = models.TextField(null=True)
+    email = models.EmailField(max_length = 60, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.username
+        return self.name
+
+class Business(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField(max_length = 30)
+    description = models.TextField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    hood = models.ForeignKey(Hood, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
     def create_business(self):
         self.save()
@@ -82,7 +71,7 @@ class Business(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length = 50)
-    content = models.TextField()
+    info = models.TextField()
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     hood = models.ForeignKey(Hood,on_delete = models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True,null=True)
@@ -106,10 +95,4 @@ class Category(models.Model):
     name = models.CharField(max_length = 30)
 
     def __str__(self):
-        return self.username
-
-
-
-class NewsLetterRecipients(models.Model):
-    name = models.CharField(max_length = 30)
-    email = models.EmailField()
+        return self.name

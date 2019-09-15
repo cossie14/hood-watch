@@ -1,0 +1,40 @@
+
+{% load bootstrap3%}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% if title %}
+  <title>Project - {{title}}</title>
+  {% else %}
+    <title> Project</title>
+  {% endif %}
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Gentium+Basic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cookie&display=swap" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet"> 
+  {% endblock %}
+ 
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include "navbar.html" %}
+  
+
+
+    {% block scripts %}   {% block content %} {%endblock%}
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      {% bootstrap_javascript %}
+     {% endblock %}
+</body>
+</html>

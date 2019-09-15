@@ -16,17 +16,17 @@
       <div class="card-header">
         <h5 id='red' class="card-title"><b>{{post.title}}</b></h5>
       </div>
-      <img style="width:50%; border-radius:25px " src="{{post.project_pic.url}}" class="card-img-top img-fluid" alt="dummy" width="100%">
+      <img style="width:50%; border-radius:25px " src="{{post.info}}" class="card-img-top img-fluid" alt="dummy" width="100%">
       <div class="card-img-overlay">
         <br>
         
         <br>
         <br>
-          <a href="{{post.project_url}}"><button type="button"class="btn btn-outline-warning">Rate</button></a>
+          <a href="{{post.info}}"><button type="button"class="btn btn-outline-warning">Rate</button></a>
            <br>
            <br>
            <br>
-          <a href="{{post.project_url}}"><button type="button"class="btn btn-outline-warning">View project</button></a> <br>
+          <a href="{{post.info}}"><button type="button"class="btn btn-outline-warning">View project</button></a> <br>
           
       </div>
 
@@ -68,7 +68,7 @@
   </div>
   <div class="col-md-4 responsive ">
     <div class="row">
-      <img style=" border-radius:25px"src="{{profile.profile_picture.url}}" alt="yes" height="50px" width="50px" class="rounded-circle"> <a href="{% url 'user'%}"><p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
+      <img style=" border-radius:25px"src="{{profile.}}" alt="yes" height="50px" width="50px" class="rounded-circle"> <a href="{% url 'user'%}"><p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
     </div><br>
       <div class="row">
         <div class="card" style="width: 18rem;">
@@ -257,4 +257,3 @@
 {% endblock %}
 
 
-{% endblock %}

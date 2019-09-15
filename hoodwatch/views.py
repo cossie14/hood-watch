@@ -1,39 +1,39 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render,redirect
-import datetime as dt
-from .models import Hood,NewsLetterRecipients,Profile
 
-from django.http import HttpResponse, Http404,HttpResponseRedirect
-
-from django.http import JsonResponse
-from rest_framework.response import Response
-from rest_framework.views import APIView
-# from .serializer import AwardSerializer,UserSerializer
-from rest_framework import status
-from .permissions import IsAdminOrReadOnly
-from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, HoodForm, BusinessForm, PostForm
+from django.shortcuts import render, redirect
+from .models import Business, User, Hood, Post, Comment
+from .forms import ProfileForm, BusinessForm, HoodForm, PostForm, CommentForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
-
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login')
 def index(request):
-    user =request.user
-    posts = Post.objects.all()
-    profile = Profile.objects.all()
-    hoods = Hoods.objects.all()
-    business = Business.objects.all()
-    return render(request, 'index.html', {"post":post,"profile":profile, "hoods":hoods,"business":buinesss,})
+    current_user = request.user
+    try:
+        profile = User.objects.get(user = current_user)
+    except:
+        profile = User.objects.create(name = request.user.username, user = request.user)
+        profile.save()
+        return redirect('edit_profile',username = current_user.username)
 
+    posts = Post.objects.filter(hood = profile.hood)
+    business = Business.objects.filter(hood = profile.hood)
+    hood = profile.hood
 
+    context = {
+        "post":post,
+        "profile":profile, 
+        "business": business, 
+        "hood": hood
+    }
 
+    return render(request,'index.html', context)
 
 @login_required(login_url='/accounts/login')
 def search(request):
     if 'business' in request.GET and request.GET['business']:
         profile = UserProfile.objects.get(user = request.user)
         search_term = request.GET.get('business')
-        results = Business.objects.filter(neighbourhood = profile.neighbourhood, name__icontains = search_term)
+        results = Business.objects.filter(hood = profile.hood, name__icontains = search_term)
         message = f'{search_term}'
         context = {
             'message': message,
@@ -44,7 +44,7 @@ def search(request):
 
 @login_required(login_url='/accounts/login')
 def business(request):
-    profile = UserProfile.objects.get(user = request.user)
+    profile = User.objects.get(user = request.user)
     businesses = Business.objects.filter(hood = profile.hood)
     context = {
         'businesses': businesses
@@ -112,7 +112,7 @@ def new_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
-            post.hood = profile.hood
+            post.neighbourhood = profile.neighbourhood
             post.save()
         return redirect('index')
     else:
