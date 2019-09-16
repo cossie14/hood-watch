@@ -4,9 +4,9 @@
 {% block content %}
 <div class="container"style="overflow-y:scroll;height: 90vh;margin-top: 90px;">
     <div class="text-center">
-        <h1>Welcome </h1>
+        <h1>Experience the beauty of our hood </h1>
     </div>
-    <a class="btn btn-danger"href="#contactsmodal" data-toggle="modal" data-target="#exampleModal">HELP Contacts!</a>
+  
     
     {% if posts %}
     <div class="row my-4">
@@ -25,7 +25,7 @@
         {% endfor%}
     </div>
     {% else %}
-        <h2 class="text-center">No posts available.</h2>
+        <h2 class="text-center">No Business available.</h2>
     {% endif %}
     
 </div>
@@ -34,18 +34,12 @@
     <div class="modal-dialog modal-notify modal-danger" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">HELP contacts!</h5>
+                
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p>Embakasi Police: 999-000-111</p>
-                <p>Estate office: 079-651-204</p>
-                <p>AAR Ambulance Service: 655-512-000</p>
-                <p>RADAR Fire Brigade: 004-562-000</p>
-                
-            </div>
+        
             <div class="modal-footer">
                 <p>We are available 24hrs</p> 
             </div>

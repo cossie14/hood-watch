@@ -30,19 +30,7 @@ def index(request):
     return render(request,'index.html', context)
 
 
-@login_required(login_url='/accounts/login')
-def search(request):
-    if 'business' in request.GET and request.GET['business']:
-        profile = UserProfile.objects.get(user = request.user)
-        search_term = request.GET.get('business')
-        results = Business.objects.filter(hood = profile.hood, name__icontains = search_term)
-        message = f'{search_term}'
-        context = {
-            'message': message,
-            'results': results
-        }
-        
-    return render(request, 'search.html', context)
+
 
 @login_required(login_url='/accounts/login')
 def business(request):
@@ -143,3 +131,18 @@ def new_business(request):
         'form': form
     }
     return render(request, 'new_business.html', context)
+    
+    
+@login_required(login_url='/accounts/login')
+def search(request):
+    if 'business' in request.GET and request.GET['business']:
+        profile = UserProfile.objects.all()
+        search_term = request.GET.get('business')
+        results = Business.objects.filter(hood = profile.hood, name__icontains = search_term)
+        message = f'{search_term}'
+        context = {
+            'message': message,
+            'results': results
+        }
+        
+    return render(request, 'search.html', context)

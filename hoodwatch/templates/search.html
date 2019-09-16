@@ -1,0 +1,90 @@
+
+{%extends 'base.html'%}
+{% block content %}
+
+
+<div class="container"style="overflow-y:scroll;height: 90vh;margin-top: 90px;">
+        <div class="text-center">
+            <h1>Experience the beauty of our hood </h1>
+        </div>
+      
+        
+        {% if posts %}
+        <div class="row my-4">
+            {% for post in posts%}
+            <div class="col-md-6">
+                <div class="card">
+                    
+                    <div class="card-body">
+                        <h2 class="card-title">{{post.title}}</h2>
+                        <p class="card-text">{{post.info}}</p>
+                        <p class="card-text">Posted by: <a href="{% url 'profile' post.user %}">{{post.user}}</a></p>
+                       
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+        {% else %}
+            <h2 class="text-center">No Business available.</h2>
+        {% endif %}
+        
+    </div>
+    
+    <div class="modal left fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-danger" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            
+                <div class="modal-footer">
+                    <p>We are available 24hrs</p> 
+                </div>
+            </div>
+        </div>
+      </div>
+      <style>
+     
+    .modal.left .modal-dialog {
+        position: fixed;
+        margin: auto;
+        width: 320px;
+        height: 100%;
+        -webkit-transform: translate3d(0%, 0, 0);
+        -ms-transform: translate3d(0%, 0, 0);
+        -o-transform: translate3d(0%, 0, 0);
+        transform: translate3d(0%, 0, 0);
+    }
+    .modal.left .modal-content {
+        height: 100%;
+        overflow-y: auto;
+    }
+    .modal.left .modal-body {
+        padding: 15px 15px 80px;
+    }
+    .modal.left.fade .modal-dialog {
+        left: -320px;
+        -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+        -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+        -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+        transition: opacity 0.3s linear, left 0.3s ease-out;
+    }
+    .modal.left.fade.show .modal-dialog {
+        left: 0;
+    }
+    /* ----- MODAL STYLE ----- */
+        .modal-content {
+            border-radius: 0;
+            border: #e2b08c;
+        background-color: #e2b08c;
+        }
+        .modal-header {
+            border-bottom-color: #e2b08c;
+            
+        }</style>
+    {% endblock %}
+    
