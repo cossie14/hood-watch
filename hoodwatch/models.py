@@ -11,6 +11,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Location(models.Model):
+    name = models.CharField(max_length = 30)
+
+    def __str__(self):
+        return self.name
+
+
 class Hood(models.Model):
    
     name = models.CharField(max_length = 30)
@@ -85,11 +92,6 @@ class Post(models.Model):
         return self.title
 
 
-class Location(models.Model):
-    name = models.CharField(max_length = 30)
-
-    def __str__(self):
-        return self.name
 
 class Comment(models.Model):
     comment = models.TextField()

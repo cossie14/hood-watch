@@ -1,12 +1,12 @@
 
 {% extends 'base.html' %}
-{% load bootstrap4 %}
+{% load bootstrap3 %}
 {% block content %}
 <div class="container"style="overflow-y:scroll;height: 90vh;margin-top: 90px;">
     <div class="text-center">
-        <h1>Welcome to {{hood}} Estate!!!</h1>
+        <h1>Welcome </h1>
     </div>
-    <a class="btn btn-danger"href="#contactsmodal" data-toggle="modal" data-target="#exampleModal">Emergency Contacts!</a>
+    <a class="btn btn-danger"href="#contactsmodal" data-toggle="modal" data-target="#exampleModal">HELP Contacts!</a>
     
     {% if posts %}
     <div class="row my-4">
@@ -34,7 +34,7 @@
     <div class="modal-dialog modal-notify modal-danger" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Emergency contacts!</h5>
+                <h5 class="modal-title" id="exampleModalLabel">HELP contacts!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -47,7 +47,7 @@
                 
             </div>
             <div class="modal-footer">
-                <p>Note that this numbers do not need credit to contact!!</p> 
+                <p>We are available 24hrs</p> 
             </div>
         </div>
     </div>

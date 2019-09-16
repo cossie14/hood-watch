@@ -1,9 +1,10 @@
 
 from django.shortcuts import render, redirect
-from .models import Business, User, Hood, Post, Comment
+from .models import Business, UserProfile, Hood, Post, Comment
 from .forms import ProfileForm, BusinessForm, HoodForm, PostForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
 
 @login_required(login_url='/accounts/login')
 def index(request):
@@ -15,9 +16,9 @@ def index(request):
         profile.save()
         return redirect('edit_profile',username = current_user.username)
 
-    posts = Post.objects.filter(neighbourhood = profile.neighbourhood)
-    businesses = Business.objects.filter(neighbourhood = profile.neighbourhood)
-    hood = profile.neighbourhood
+    posts = Post.objects.filter(hood = profile.hood)
+    businesses = Business.objects.filter(hood = profile.hood)
+    hood = profile.hood
 
     context = {
         "posts":posts,
@@ -27,6 +28,7 @@ def index(request):
     }
 
     return render(request,'index.html', context)
+
 
 @login_required(login_url='/accounts/login')
 def search(request):
@@ -44,8 +46,8 @@ def search(request):
 
 @login_required(login_url='/accounts/login')
 def business(request):
-    profile = User.objects.get(user = request.user)
-    businesses = Business.objects.filter(hood = profile.hood)
+    profile = User.objects.all()
+    businesses = Business.objects.all()
     context = {
         'businesses': businesses
     }    
@@ -76,16 +78,17 @@ def post(request, id):
 def profile(request, username):
     user = User.objects.get(username = username)
     profile = UserProfile.objects.get(user = user)
-    businesses = Business.objects.filter(user = profile)
+    businesses = Business.objects.all()
     context = {
         'profile': profile,
         'businesses': businesses
     }
     return render(request, 'profile.html', context)
 
+
 @login_required(login_url='/accounts/login')
 def edit_profile(request,username):
-    profile = Users.objects.get(user=request.user)
+    profile = UserProfile.objects.get(user=request.user)
     if request.method == 'POST':
         form = ProfileForm(request.POST,instance=profile)
         if form.is_valid():
@@ -94,8 +97,8 @@ def edit_profile(request,username):
             profile.save()
         return redirect('profile', username = request.user)
     else:
-        if Users.objects.filter(user=request.user):
-            profile = Users.objects.get(user=request.user)
+        if UserProfile.objects.filter(user=request.user):
+            profile = UserProfile.objects.get(user=request.user)
             form = ProfileForm(instance=profile)
         else:
             form = ProfileForm()
@@ -106,13 +109,13 @@ def edit_profile(request,username):
 
 @login_required(login_url='/accounts/login')
 def new_post(request):
-    profile = UserProfile.objects.get(user = request.user)
+    profile = UserProfile.objects.all()
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
-            post.neighbourhood = profile.hood
+            post.hood = profile.hood
             post.save()
         return redirect('index')
     else:
@@ -125,7 +128,7 @@ def new_post(request):
 
 @login_required(login_url='/accounts/login')
 def new_business(request):
-    profile = UserProfile.objects.get(user = request.user)
+    profile = UserProfile.objects.all()
     if request.method == 'POST':
         form = BusinessForm(request.POST)
         if form.is_valid():

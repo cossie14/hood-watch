@@ -1,6 +1,6 @@
   
 {% extends 'base.html' %}
-{% load bootstrap4 %}
+{% load bootstrap3%}
 {% block content %}
     <div class="container">
            
@@ -17,7 +17,7 @@
                                     <div class="card-body">
                                             Name:<h2 class="card-title">{{business.name}}</h2>
                                             Description:<p class="card-text">{{business.description}}</p>
-                                    
+                                            Owner:<p class="card-text">{{business.user}}</p>
                             
                                     </div>
                                 </div>
@@ -27,7 +27,7 @@
             </table>
         </div>
         {% else%}
-        <h1 class="text-center">No business yet.</h1>
+        <h1 class="text-center">No business.</h1>
         {% endif%}
        
     </div>

@@ -1,11 +1,10 @@
-
 from django import forms
-from .models import User, Business, Hood, Post, Comment
+from .models import UserProfile, Business, Hood, Post, Comment
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = User
-        exclude = ['user','']
+        model = UserProfile
+        exclude = ['user','hood']
 
 class BusinessForm(forms.ModelForm):
     class Meta:
