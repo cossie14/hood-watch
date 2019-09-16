@@ -5,7 +5,7 @@ from .models import User, Business, Hood, Post, Comment
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        exclude = ['user']
+        exclude = ['user','']
 
 class BusinessForm(forms.ModelForm):
     class Meta:

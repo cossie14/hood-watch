@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> New Project </title>
+  <title> New Business </title>
   {{form.media}}
 
 {% block styles %} {% bootstrap_css %}
@@ -19,20 +19,11 @@
 
 <body>
   <div class="container">
-    <h1 class="text-center" style="font-family:'Lobster Two',sans-serif">Projects</h1>
-    <form  action="{%url 'newproject'%}" method="post" enctype="multipart/form-data">
+    <h1 class="text-center" style="font-family:'Lobster Two',sans-serif">Business</h1>
+    <form  action="{%url 'newbusiness'%}" method="post" enctype="multipart/form-data">
       {%csrf_token%}
 
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-success btn-lg" value="share">
     </form>
   </div>
-
-
-   {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %} {% endblock %}
-
-</body>
-
-</html>

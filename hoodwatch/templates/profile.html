@@ -1,45 +1,48 @@
 
-{% load bootstrap3 %} {% load staticfiles %}
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        {% if profile.user == user %}
+        <h1 class="text-center my-4">Profile details</h1>
+        {% else %}
+        <h1 class="text-center my-4">{{profile.name}}'s Business</h1>
+        {% endif%}
+        {% if profile.user == user %}
+                   
+        <div class="col-md-6">
+                <div class="card">
+                    
+                    <div class="card-body">
+                            Name:<h2 class="card-title">{{profile.name}}</h2>
+                            Hood:<p class="card-text">{{profile.hood}}</p>
+                            Bio:<p class="card-text">{{profile.bio}}</p>
+                            Email:<p class="card-text">{{profile.email}}</p>
+            
+                    </div>
+                </div>
+            </div>
+            {% else %}
+        <h1 >no profile made</h1>
+        {% endif%}
 
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>New Profile</title>
-  {{form.media}}
-
-{% block styles %} {% bootstrap_css %}
-<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet"> 
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endblock %}
-
-</head>
-
-<body>
-
-  <div class="container">
-    <div class="card">
-      
-      
-      <div class="card-body">
-        <h5 class="yu text-center"style="font-family: 'Pacifico', cursive;font-size: 5em">Create profile</h5>
-        <form  action="{%url 'profile'%}" method="post" enctype="multipart/form-data">
-          {%csrf_token%}
-
-          {% bootstrap_form form%}
-          <input type="submit" class="btn btn-success btn-lg" value="Post">
-        </form>
-      </div>
+       
+        {% if businesses %}
+        <h1 class="text-center my-4">Your posted business</h1>
+        <div class="row">
+            {% for business in businesses %}
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h2 class="card-title">{{business.name}}</h2>
+                        <p class="card-text">{{business.description}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h2 class="text-center">No business created!</h2>
+        {% endif %}
+       
     </div>
-
-  </div>
-
-   {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %} {% endblock %}
-
-</body>
-
-</html>
+{% endblock %}

@@ -9,20 +9,20 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     current_user = request.user
     try:
-        profile = User.objects.get(user = current_user)
+        profile = UserProfile.objects.get(user = current_user)
     except:
-        profile = User.objects.create(name = request.user.username, user = request.user)
+        profile = UserProfile.objects.create(name = request.user.username, user = request.user)
         profile.save()
         return redirect('edit_profile',username = current_user.username)
 
-    posts = Post.objects.filter(hood = profile.hood)
-    business = Business.objects.filter(hood = profile.hood)
-    hood = profile.hood
+    posts = Post.objects.filter(neighbourhood = profile.neighbourhood)
+    businesses = Business.objects.filter(neighbourhood = profile.neighbourhood)
+    hood = profile.neighbourhood
 
     context = {
-        "post":post,
+        "posts":posts,
         "profile":profile, 
-        "business": business, 
+        "businesses": businesses, 
         "hood": hood
     }
 
@@ -85,7 +85,7 @@ def profile(request, username):
 
 @login_required(login_url='/accounts/login')
 def edit_profile(request,username):
-    profile = UserProfile.objects.get(user=request.user)
+    profile = Users.objects.get(user=request.user)
     if request.method == 'POST':
         form = ProfileForm(request.POST,instance=profile)
         if form.is_valid():
@@ -94,8 +94,8 @@ def edit_profile(request,username):
             profile.save()
         return redirect('profile', username = request.user)
     else:
-        if UserProfile.objects.filter(user=request.user):
-            profile = UserProfile.objects.get(user=request.user)
+        if Users.objects.filter(user=request.user):
+            profile = Users.objects.get(user=request.user)
             form = ProfileForm(instance=profile)
         else:
             form = ProfileForm()
@@ -112,7 +112,7 @@ def new_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
-            post.neighbourhood = profile.neighbourhood
+            post.neighbourhood = profile.hood
             post.save()
         return redirect('index')
     else:

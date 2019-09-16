@@ -3,13 +3,16 @@ import datetime as dt
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
-class Location(models.Model):
+
+
+class Category(models.Model):
     name = models.CharField(max_length = 30)
 
     def __str__(self):
         return self.name
 
 class Hood(models.Model):
+   
     name = models.CharField(max_length = 30)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     occupants = models.IntegerField(null=True, default=0)
@@ -35,12 +38,12 @@ class Hood(models.Model):
         self.occupants += 1
         self.save()
 
-class User(models.Model):
+class UserProfile(models.Model):
     name = models.CharField(max_length = 30)
     hood = models.ForeignKey(Hood, on_delete=models.CASCADE, null=True)
     bio = models.TextField(null=True)
     email = models.EmailField(max_length = 60, null=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -70,6 +73,8 @@ class Business(models.Model):
         self.save()
 
 class Post(models.Model):
+
+    hood_pic = models.ImageField(upload_to = 'hood/', blank=True)
     title = models.CharField(max_length = 50)
     info = models.TextField()
     user = models.ForeignKey(User,on_delete = models.CASCADE)
@@ -78,6 +83,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Location(models.Model):
+    name = models.CharField(max_length = 30)
+
+    def __str__(self):
+        return self.name
 
 class Comment(models.Model):
     comment = models.TextField()
@@ -91,8 +103,5 @@ class Comment(models.Model):
     class Meta:
         ordering = ['-pub_date']
 
-class Category(models.Model):
-    name = models.CharField(max_length = 30)
 
-    def __str__(self):
-        return self.name
+

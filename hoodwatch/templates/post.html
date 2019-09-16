@@ -1,28 +1,16 @@
+
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-{% load humanize %}
 {% block content %}
     <div class="container">
-        <div class="card">
+        <div class="card w-75 my-5 mx-auto">
             <div class="card-body">
-                <h1 class="card-title">{{post.title}}</h1>
-                <p class="card-text">{{post.content}}</p>
-                <p class="card-text">Posted by: <a href="{% url 'profile' post.user %}">{{post.user}}</a></p>
-                <form method="post">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {% bootstrap_form form%}
-                    <input type="submit" value="Comment" class="btn btn-primary">
+                    {% bootstrap_form form   layout='inline'%}
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
                 </form>
             </div>
         </div>
-        <ul class="list-group my-4">
-            {% for comment in comments%}
-            <li class="list-group-item mb-2">
-                <strong>{{comment.user}}: </strong>
-                <span>{{comment.comment}}</span>
-                <span class="float-right">{{comment.pub_date | naturaltime}}</span>
-            </li>
-            {% endfor%}
-        </ul>
     </div>
 {% endblock %}

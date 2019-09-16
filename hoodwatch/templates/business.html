@@ -1,35 +1,34 @@
+  
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
     <div class="container">
+           
         {% if businesses %}
-        <div class="card card-body my-5">
-            <table class="table">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Owner</th>
-                    <th scope="col">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="text-center">
+                <h1>Businesses in the hood!!</h1>
+            </div>
+                
                     {% for business in businesses %}
-                    <tr>
-                        <th scope="row">{{business.id}}</th>
-                        <td>{{business.name}}</td>
-                        <td>{{business.description}}</td>
-                        <td>{{business.user}}</td>
-                        <td>{{business.email}}</td>
-                    </tr>
+                   
+                        <div class="col-md-6">
+                                <div class="card">
+                                    
+                                    <div class="card-body">
+                                            Name:<h2 class="card-title">{{business.name}}</h2>
+                                            Description:<p class="card-text">{{business.description}}</p>
+                                    
+                            
+                                    </div>
+                                </div>
+                            </div>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
         {% else%}
-        <h1 class="text-center">No business available.</h1>
+        <h1 class="text-center">No business yet.</h1>
         {% endif%}
-        <a href="{% url 'new_business' %}" class="btn btn-primary">Add Business</a>
+       
     </div>
 {% endblock %}
