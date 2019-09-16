@@ -106,4 +106,13 @@ class Comment(models.Model):
         ordering = ['-pub_date']
 
 
+class Hospital(models.Model):
+    name =models.CharField(max_length=100)
+    email = models.EmailField()
+    contact = models.IntegerField()
+    
+  
+
+    def __str__(self):
+        return self.name
 

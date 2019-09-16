@@ -1,0 +1,34 @@
+  
+{% extends 'base.html' %}
+{% load bootstrap3%}
+{% block content %}
+    <div class="container">
+           
+        {% if hospital %}
+        <div class="text-center">
+                <h1>Businesses in the hood!!</h1>
+            </div>
+                
+                    {% for hospital in contacts %}
+                   
+                        <div class="col-md-6">
+                                <div class="card">
+                                    
+                                    <div class="card-body">
+                                            Name:<h2 class="card-title">{{hospital.name}}</h2>
+                                            Description:<p class="card-text">{{hospital.description}}</p>
+                                            Owner:<p class="card-text">{{hospital.user}}</p>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else%}
+        <h1 class="text-center">No hospitals.</h1>
+        {% endif%}
+       
+    </div>
+{% endblock %}

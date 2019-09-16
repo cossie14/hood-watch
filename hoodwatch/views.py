@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from .models import Business, UserProfile, Hood, Post, Comment
+from .models import Business, UserProfile, Hood, Post, Comment, Hospital
 from .forms import ProfileForm, BusinessForm, HoodForm, PostForm, CommentForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -131,6 +131,17 @@ def new_business(request):
         'form': form
     }
     return render(request, 'new_business.html', context)
+
+
+
+
+@login_required(login_url='/accounts/login/')
+def hospital(request):
+    current_user=request.user
+    profile=Profile.objects.get(username=current_user)
+    healthservices = Health.objects.filter(hood=profile.hood)
+
+    return render(request,'hospital.html',{"contacts":contacts})   
     
     
 @login_required(login_url='/accounts/login')

@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile, Business, Hood, Post, Comment
+from .models import UserProfile, Business, Hood, Post, Comment, Hospital
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -25,3 +25,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('comment',)
+
+
+class HospitalForm(forms.ModelForm):
+   class Meta:
+        model = Hospital
+        exclude = ['user', 'hood']
