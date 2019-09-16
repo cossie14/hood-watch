@@ -1,6 +1,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
+        
         <a class="navbar-brand" href="{% url 'index' %}"></a>
       </div>
   
@@ -26,6 +27,7 @@
         <li>
           <a class='btn btn-default' href="/accounts/login">Login</a>
         </li>
+        <br>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
 
@@ -33,9 +35,11 @@
           <li class="nav-item">
               <a href="{% url 'business' %}" class="nav-link">Business</a>
           </li>
+          <br>
           <li class="nav-item">
               <a href="{% url 'profile' user %}" class="nav-link">Profile</a>
           </li>
+          <br>
           <li class="nav-item">
               <a href="{% url 'edit_profile' user %}" class="nav-link">Edit Profile</a>
               </li>
@@ -44,10 +48,12 @@
          
               <!-- <a href="{% url 'post' %}" class="nav-link">New Post</a> -->
           </li>
+          <br>
           <li class="nav-item">
          
               <a href="{% url 'newbusiness' %}" class="nav-link">New Business</a>
           </li>
+         <br>
          
           <li class="nav-item">
               <a href="/logout" class="nav-link">Logout</a>
@@ -62,7 +68,17 @@
        
         {% endif %}
       
+        <div class="container">
+            <img src="https://images.pexels.com/photos/1963557/pexels-photo-1963557.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="globe" style="width:100%;">
+
     
+             <div class="centered">
+              
+             <p>Welcome to Hood Watch </p>
+              </div>
+            
+             
+          </div>
     
     
                          
