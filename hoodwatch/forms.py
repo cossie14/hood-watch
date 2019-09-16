@@ -27,7 +27,7 @@ class CommentForm(forms.ModelForm):
         fields = ('comment',)
 
 
-class HospitalForm(forms.ModelForm):
-   class Meta:
-        model = Hospital
-        exclude = ['user', 'hood']
+# class HospitalForm(forms.ModelForm):
+#    class Meta:
+#         model = Hospital
+#         exclude = ['user', 'hood']
