@@ -1,8 +1,9 @@
 
     <div class="container-fluid">
+
       <div class="navbar-header">
         
-          <a class="navbar-brand" href="/">hood Watch</a>
+          <a class="navbar-brand" href="/"></a>
         
         <a class="navbar-brand" href="{% url 'index' %}"></a>
       </div>
@@ -39,31 +40,30 @@
           </li>
           <br>
           <li class="nav-item">
-              <a href="{% url 'business' %}" class="nav-link">Hospitals</a>
+         
+              <a href="{% url 'newbusiness' %}" class="nav-link">New Business</a>
           </li>
           <br>
-          <li class="nav-item">
-              <a href="{% url 'business' %}" class="nav-link">Police authorities</a>
-          </li>
-          <br>
+         
           <li class="nav-item">
               <a href="{% url 'profile' user %}" class="nav-link">Profile</a>
           </li>
           <br>
           <li class="nav-item">
               <a href="{% url 'edit_profile' user %}" class="nav-link">Edit Profile</a>
-              </li>
-         
-          <li class="nav-item">
-         
-            
           </li>
           <br>
           <li class="nav-item">
-         
-              <a href="{% url 'newbusiness' %}" class="nav-link">New Business</a>
+                  <a href="{% url 'business' %}" class="nav-link">Hospitals</a>
           </li>
+          <br>
+          <li class="nav-item">
+                <a href="{% url 'business' %}" class="nav-link">Police authorities</a>
+          </li>
+         
+          
          <br>
+        
          
           <li class="nav-item">
               <a href="/logout" class="nav-link">Logout</a>
